@@ -13,7 +13,7 @@ Em breve, quando a api for publicada, será orientado a sua instalação
 
 ## Histórico de Lançamento
 
-- 0.0.1
+- 0.1.0
   - Verão inicial funcionando a api corretamente. Porém não foi implementado uma pagina para visualizar os dados.
   
  ## Objetivos
