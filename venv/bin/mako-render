@@ -1,6 +1,5 @@
-#!/bin/sh
-'''exec' "/home/lucas/projetos/Python/praticando/Web Scraping /venv/bin/python3" "$0" "$@"
-' '''
+#!/home/lucas/projetos/Python/praticando/covid-19/venv/bin/python3
+
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -9,6 +9,7 @@ from app.models import GeneralsDatas, CountryCases, db
 #A configuração será obtida da variavel de ambiente FLASK_CONFIG
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 app.app_context().push()
+app.config
 
 migrate = Migrate(app, db)
 
@@ -30,3 +31,4 @@ def make_shell_context():
 def deploy():
     """Executar tarefas de implantação"""
     #Faz a migração do banco de dados para a versão mais recente
+    upgrade()

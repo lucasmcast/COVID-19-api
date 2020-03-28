@@ -1,4 +1,4 @@
-#!"/home/lucas/projetos/Python/praticando/Web Scraping /venv/bin/python3"
+#!/home/lucas/projetos/Python/praticando/covid-19/venv/bin/python3
 # EASY-INSTALL-ENTRY-SCRIPT: 'alembic==1.4.2','console_scripts','alembic'
 __requires__ = 'alembic==1.4.2'
 import re

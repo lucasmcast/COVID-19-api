@@ -134,4 +134,6 @@ dmypy.json
 #DataBases
 *.sqlite
 
+
+
 # End of https://www.gitignore.io/api/linux,python,visualstudiocode

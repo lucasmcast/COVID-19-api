@@ -1,6 +1,6 @@
 __autor__ = "Lucas Martins de Castro"
 
-from urllib.request import urlopen as uReq
+from urllib.request import urlopen as uReq, Request
 from urllib.error import HTTPError
 from bs4 import BeautifulSoup as soup
 
@@ -8,12 +8,19 @@ class ServGetData:
 
     def get_countries(self):
         print("[INFO]: Iniciando a busca de dados por país")
-        
+
+        #Usar um User-Agent para o site não bloquear nossa requisição
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.3'
+        }
+
         my_url = "https://www.worldometers.info/coronavirus/"
+        req = Request(url=my_url, headers=headers)
+        
         #cria uma lista vazia de paises
         countries_list = []    
         try:
-            uClient = uReq(my_url)
+            uClient = uReq(req)
             page_html = uClient.read()
             uClient.close()
             #converte a pagina html para o tipo BeautifulSoup
@@ -71,9 +78,16 @@ class ServGetData:
     def get_all_cases(self):
         print("[INFO]: Iniciando a busca por dados gerais")
         total_numbers_cases = {}
+        #Usar um User-Agent para o site não bloquear nossa requisição
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.3'
+        }
+
+        my_url = "https://www.worldometers.info/coronavirus/"
+        req = Request(url=my_url, headers=headers)
+
         try:
-            my_url = "https://www.worldometers.info/coronavirus/"
-            uClient = uReq(my_url)
+            uClient = uReq(req)
             page_html = uClient.read()
             uClient.close()
             page_soup = soup(page_html, "html.parser")
@@ -93,3 +107,5 @@ class ServGetData:
             print(e.reason, " ", e.code)
         finally:
             return total_numbers_cases
+
+data = ServGetData().get_all_cases()
