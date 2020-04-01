@@ -4,12 +4,19 @@ utilizando a raspagem web, mais conhecida como ***Web Scraping***.
 
 A dois tipos de dados obtidos pela api:
 
-- Numero de casos mundias, ```/api/v1/all_cases```  
-- Numero de casos por paises, ```/api/v1/all_countries```
+- Numero de casos mundias, ```http://covid19.lucas-martins.com/api/v1/all_cases```  
+- Numero de casos por paises, ```http://covid19.lucas-martins.com/api/v1/all_countries```
 
 ## Instalação
 
-Em breve, quando a api for publicada, será orientado a sua instalação
+Requisitos:
+
+- Python >= 3.6
+- Python-venv
+
+Primeiro passo é clonar o repositório:
+
+```https://github.com/lucasmcast/COVID19-api.git```
 
 ## Histórico de Lançamento
 
