@@ -108,4 +108,3 @@ class ServGetData:
         finally:
             return total_numbers_cases
 
-data = ServGetData().get_all_cases()

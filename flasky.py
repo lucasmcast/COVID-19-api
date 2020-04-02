@@ -1,4 +1,10 @@
 #Este modulo é o local em que está definida a instância da aplicação
+import os
+from dotenv import load_dotenv
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+if os.path.exists(dotenv_path):
+    load_dotenv(dotenv_path)
 
 import os
 from flask_migrate import Migrate, upgrade
