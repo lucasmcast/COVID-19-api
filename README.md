@@ -33,7 +33,7 @@ Primeiro passo é clonar o repositório:
  - [ ] Criar página para visualizar os dados obtidos.
  - [ ] Disponibilizar informações de países específicos, ```/api/v1/country/<país>```
  - [ ] Disponibilizar informações dos dados gerais e de países por data específica. ```/api/v1/date/country/<data>``` ou ```/api/v1/date/all_cases/<data>```
- - [ ] Publicar projeto.
+ - [ ] Implantar projeto.
  
 ## Meta
 
