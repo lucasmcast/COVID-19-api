@@ -40,7 +40,7 @@ Criar a variável de ambiante flask:
 
 Fazer deploy da apliação configurando todas as tabelas:
 
-```# flask deploy``
+```$ flask deploy```
 
 Executar projeto:
 
