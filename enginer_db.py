@@ -4,7 +4,7 @@ from app.get_data import ServGetData
 from datetime import date, datetime
 from flasky import app
 from copy import deepcopy
-
+from sqlalchemy import exc
 
 class EnginerDB:
     
@@ -18,7 +18,7 @@ class EnginerDB:
         Dados usados das informações gerais de casos.
         """
         print("[INFO]: Inserindo Dados Gerais")
-        
+   
         with app.app_context():
             date_atual = datetime.now()
             hour_now = date_atual.strftime('%H:%M')
@@ -63,6 +63,7 @@ class EnginerDB:
         Dados usados da tabela de casos por paises
         """
         print("[INFO]: Inserindo Dados por países")
+        print(app.name)
         with app.app_context():
             date_atual = datetime.now()
             hour_now = date_atual.strftime('%H:%M')
@@ -153,11 +154,16 @@ class EnginerDB:
         Função obtem os dados do banco de dados usando como
         filtro a data atual e retornando os dados.
         """   
+        data = []
         data_atual = date.today()
         #data_atual = '2020-03-24'
-        data = models.query.filter_by(date_data=data_atual).all()
+        try:
+            data = models.query.filter_by(date_data=data_atual).all()
+        except exc.SQLAlchemyError:
+            pass
+        finally:
+            return data
 
-        return data
 
     
     def convert_dbTojson(self, data):

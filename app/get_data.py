@@ -107,4 +107,3 @@ class ServGetData:
             print(e.reason, " ", e.code)
         finally:
             return total_numbers_cases
-
