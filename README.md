@@ -14,37 +14,43 @@ Requisitos:
 - Python >= 3.6
 - Python-venv
 
-Primeiro passo é clonar o repositório:
+#### Primeiro passo é clonar o repositório:
 
-```$ git clone https://github.com/lucasmcast/COVID19-api.git```
+ ```$ git clone https://github.com/lucasmcast/COVID19-api.git```
 
-Ir para o diretório do projeto:
+#### Ir para o diretório do projeto:
 
-```$ cd COVID-19-api```
+ ```$ cd COVID-19-api```
 
-Criar um ambiente virtual:
+#### Criar um ambiente virtual:
 
-```$ python3 -m venv venv```
+ ```$ python3 -m venv venv```
 
-Ativar o ambiente virtual no bash. Certifique que você esteja no diretório raiz do projeto:
+#### Ativar o ambiente virtual no bash. Certifique que você esteja no diretório raiz do projeto:
 
-```$ source venv/bin/activate```
+ ```$ source venv/bin/activate```
 
-Instalar as dependências do projeto:
+#### Instalar as dependências do projeto:
 
-```$ pip install -r requeriments/prod.txt```
+ ```$ pip install -r requeriments/prod.txt```
 
-Criar a variável de ambiante flask:
+#### Criar a variável de ambiante flask:
 
-```$ export FLASK_APP=flasky.py```
+Linux:
 
-Fazer deploy da apliação configurando todas as tabelas:
+ ```$ export FLASK_APP=flasky.py```
 
-```$ flask deploy```
+Windows:
 
-Executar projeto:
+``` set FLASK_APP=flasky.py```
 
-```$ flask run```
+#### Fazer deploy da apliação configurando todas as tabelas:
+
+ ```# flask deploy``
+
+#### Executar projeto:
+
+ ```$ flask run```
 
 
 ## Histórico de Lançamento
