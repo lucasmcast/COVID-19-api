@@ -46,7 +46,7 @@ Windows:
 
 #### Fazer deploy da apliação configurando todas as tabelas:
 
- ```# flask deploy``
+ ```# flask deploy```
 
 #### Executar projeto:
 
