@@ -4,8 +4,8 @@ utilizando a raspagem web, mais conhecida como ***Web Scraping***.
 
 A dois tipos de dados obtidos pela api:
 
-- Numero de casos mundias, ```http://covid19.lucas-martins.com/api/v1/all_cases```  
-- Numero de casos por paises, ```http://covid19.lucas-martins.com/api/v1/all_countries```
+- Numero de casos mundias, [GET]```http://covid19.lucas-martins.com/api/v1/all_cases```  
+- Numero de casos por paises, [GET]```http://covid19.lucas-martins.com/api/v1/all_countries```
 
 ## Instalação
 
@@ -28,21 +28,17 @@ Requisitos:
 
 #### Ativar o ambiente virtual no bash. Certifique que você esteja no diretório raiz do projeto:
 
+Linux:
+
  ```$ source venv/bin/activate```
+
+Windows:
+
+```/venv/Scripts/activate```
 
 #### Instalar as dependências do projeto:
 
  ```$ pip install -r requeriments/prod.txt```
-
-#### Criar a variável de ambiante flask:
-
-Linux:
-
- ```$ export FLASK_APP=flasky.py```
-
-Windows:
-
-``` set FLASK_APP=flasky.py```
 
 #### Fazer deploy da apliação configurando todas as tabelas:
 
@@ -65,10 +61,10 @@ Windows:
  - [x] Criar tarefa para buscar dados em determinado tempo.
  - [x] Atualizar os dados em determinado tempo somente do dia atual, caso contrário, fazer a inserção.
  - [x] Disponibilizar os dados através da api.
- - [ ] Criar página para visualizar os dados obtidos.
+ - [x] Criar página para visualizar os dados obtidos.
  - [ ] Disponibilizar informações de países específicos, ```/api/v1/country/<país>```
  - [ ] Disponibilizar informações dos dados gerais e de países por data específica. ```/api/v1/date/country/<data>``` ou ```/api/v1/date/all_cases/<data>```
- - [ ] Implantar projeto.
+ - [x] Implantar projeto.
  
 ## Meta
 

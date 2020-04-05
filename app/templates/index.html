@@ -1,12 +1,31 @@
 {% extends "base.html" %}
-{% block title %}Index{% endblock %}
+{% block title %}Covid-19-api{% endblock %}
 
 {% block content %}
+
+<div class="row ">
+    <ul class="list-group mx-auto h-75 d-inline-block m-5 pb-5" style="width: 700px;">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <h3>Casos de Coronavírus</h1>
+                <span class="badge badge-primary badge-pill">{{cases.total_cases}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <h3>Mortos</h1>
+                <span class="badge badge-primary badge-pill">{{cases.total_deaths}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <h3>Recuperados</h1>
+                <span class="badge badge-primary badge-pill">{{cases.total_recovered}}</span>
+        </li>
+    </ul>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 mb-3">
-            <input type="text" id="myFilter" class="form-control" onkeyup="searchFunction()"
-                placeholder="Procura por país..">
+            <div class="input-group">
+                <input type="text" id="myFilter" class="form-control" onkeyup="searchFunction()"
+                    placeholder="Procurar país..">
+            </div>
         </div>
     </div>
     <div id="myItems" class="row">
