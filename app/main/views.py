@@ -5,6 +5,10 @@ from ..models import GeneralsDatas, CountryCases
 
 @main.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
-    
+    data_atual = date.today()
+    return render_template('index.html', values=CountryCases.query.filter_by(date_data=data_atual))
+
+@main.route('/sobre', methods=["GET"])
+def sobre():
+    return render_template('sobre.html')
 

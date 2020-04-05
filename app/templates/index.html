@@ -1,1 +1,54 @@
 {% extends "base.html" %}
+{% block title %}Index{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 mb-3">
+            <input type="text" id="myFilter" class="form-control" onkeyup="searchFunction()"
+                placeholder="Procura por país..">
+        </div>
+    </div>
+    <div id="myItems" class="row">
+        <div class="col-sm-12 mb-3">
+            {% for item in values %}
+            <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded">
+                <div class="card-header">{{item.country}}</div>
+                <div class="card-body">
+                    <h5 class="card-title">Total de casos: {{item.total_cases}} | Novos Casos: <span
+                            style="color: red;">{{item.new_cases}}</span> </h5>
+                    <p class="card-text">Total de mortos: {{item.deaths_cases}} | Novos Mortos: <span
+                            style="color: red;">{{item.new_deaths}}</span></p>
+                    <p class="card-text">Total de recuperados: <span
+                            style="color: green;">{{item.total_recovered}}</span> |
+                        Casos Ativos: {{item.active_cases}}
+                        <p class="card-text">Casos Criticos: {{item.serious_critical}} </p>
+                        <p clas="card-text" style="display: flex; justify-content: flex-end">{{item.date_data}} -
+                            {{item.hour_data}} </p>
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script>
+    function searchFunction() {
+        var input, filter, cards, cardContainer, h5, title, i;
+        input = document.getElementById("myFilter");
+        filter = input.value.toUpperCase();
+        cardContainer = document.getElementById("myItems");
+        cards = cardContainer.getElementsByClassName("card");
+        for (i = 0; i < cards.length; i++) {
+            title = cards[i].querySelector(".card-header");
+            if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+</script>
+{% endblock%}

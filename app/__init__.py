@@ -1,10 +1,10 @@
 from flask import Flask
-from flask_bootstrap import Bootstrap
+#from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from config import config
 
 # Set Globals
-bootstrap = Bootstrap()
+#bootstrap = Bootstrap()
 db = SQLAlchemy()
 
 
@@ -15,7 +15,7 @@ def create_app(config_name):
 
     
     config[config_name].init_app(app)
-    bootstrap.init_app(app)
+    #bootstrap.init_app(app)
     db.init_app(app)
 
     #associar rotas e paginas de erro personalizadas aqui
