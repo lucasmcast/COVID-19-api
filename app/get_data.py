@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup as soup
 class ServGetData:
 
     def get_countries(self):
-        print("[INFO]: Iniciando a busca de dados por país")
+        #print("[INFO]: Iniciando a busca de dados por país")
 
         #Usar um User-Agent para o site não bloquear nossa requisição
         headers = {
@@ -76,7 +76,7 @@ class ServGetData:
             return countries_list
     
     def get_all_cases(self):
-        print("[INFO]: Iniciando a busca por dados gerais")
+        #print("[INFO]: Iniciando a busca por dados gerais")
         total_numbers_cases = {}
         #Usar um User-Agent para o site não bloquear nossa requisição
         headers = {

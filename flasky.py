@@ -22,7 +22,7 @@ app.config
 migrate = Migrate(app, db)
 
 #variavel determina o tempo em cada busca
-tempo_exrc = 60
+tempo_exrc = 300
 
 def is_tables_exist():
     """
@@ -65,3 +65,4 @@ def deploy():
     """Executar tarefas de implantação"""
     #Faz a migração do banco de dados para a versão mais recente
     upgrade()
+

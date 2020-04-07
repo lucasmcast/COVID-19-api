@@ -17,7 +17,7 @@ class EnginerDB:
         Insere os dados no banco de dados obtidos pela web.
         Dados usados das informações gerais de casos.
         """
-        print("[INFO]: Inserindo Dados Gerais")
+        #print("[INFO]: Inserindo Dados Gerais")
    
         with app.app_context():
             date_atual = datetime.now()
@@ -29,10 +29,10 @@ class EnginerDB:
             date_last_db = ''
 
             #Condição para validar caso o banco de dados esteje vazio
-            if len(data_db) != 0:
+            if data_db:
                 date_last_db = data_db[-1].date_data.strip()
             
-            print("Total de Dados Gerais no DB: {}".format(len(data_db)))
+            #print("Total de Dados Gerais no DB: {}".format(len(data_db)))
 
             #Condição para verificar se os dados obtidos são da data atual
             #Caso sejam diferentes, os dados são inseridos, de outra maneira,
@@ -42,9 +42,12 @@ class EnginerDB:
                     total_deaths=data['total_deaths'], total_recovered=data['total_recovered'],\
                         date_data=date_now, hour_data=hour_now)
 
-                db.session.add(generals_datas)
-                db.session.commit()
-                print("[INFO]: Dados Gerais Inseridos\n")
+                try:
+                    db.session.add(generals_datas)
+                    db.session.commit()
+                    #print("[INFO]: Dados Gerais Inseridos\n")
+                except exec.SQLAlchemyError as e:
+                    print("[COVID-19][WARNING][insert_data_cases] - Erro ao inserir dados gerais")
             else:
                 generals_datas = data_db[-1]
                 generals_datas.total_cases=data['total_cases']
@@ -52,9 +55,12 @@ class EnginerDB:
                 generals_datas.total_recovered=data['total_recovered']
                 generals_datas.hour_data =hour_now
 
-                db.session.add(generals_datas)
-                db.session.commit()
-                print("[INFO]: Dados Gerais Atualizados\n")
+                try:
+                    db.session.add(generals_datas)
+                    db.session.commit()
+                    #print("[INFO]: Dados Gerais Atualizados\n")
+                except exc.SQLAlchemyError as e:
+                    print("[COVID-19][WARNING][insert_data_cases] - Erro ao atualizar dados gerais")
 
     
     def insert_data_countries(self):
@@ -62,8 +68,8 @@ class EnginerDB:
         Insere os dados no banco de dados obtidos pela web.
         Dados usados da tabela de casos por paises
         """
-        print("[INFO]: Inserindo Dados por países")
-        print(app.name)
+        #print("[INFO]: Inserindo Dados por países")
+        #print(app.name)
         with app.app_context():
             date_atual = datetime.now()
             hour_now = date_atual.strftime('%H:%M')
@@ -84,11 +90,11 @@ class EnginerDB:
             #Ordena tambem os dados obtidos da web
             data = sorted(data, key=lambda k: k['country'])
             
-            print("Total de Paises: {}".format(len(dataDB_converted)))
+            #print("Total de Paises: {}".format(len(dataDB_converted)))
             list_aux = self.compare_lists(data, dataDB_converted)
 
             #Condição para validar caso o banco esteje vazio.
-            if len(data_db) != 0:
+            if data_db:
                 date_last_db = data_db[-1].date_data.strip()
 
             country_datas = []
@@ -111,10 +117,12 @@ class EnginerDB:
                         date_data = date_now,\
                         hour_data = hour_now
                     ))
-
-                db.session.add_all(country_datas)
-                db.session.commit()
-                print("[INFO]: Dados Por Países Inseridos\n")
+                try:
+                    db.session.add_all(country_datas)
+                    db.session.commit()
+                    #print("[INFO]: Dados Por Países Inseridos\n")
+                except exc.SQLAlchemyError as e:
+                    print("[COVID-19][WARNING][insert_data_countries] - Erro ao Inserir Paises")
             else:
                 for row in list_aux:
                     data_db.append(CountryCases(
@@ -143,10 +151,14 @@ class EnginerDB:
                     data_db[i].serious_critical = row['serious_critical']
                     data_db[i].hour_data = hour_now
 
-                print(len(data_db))
-                db.session.add_all(data_db)
-                db.session.commit()
-                print("[INFO]: Dados Por Países Atualizados\n")
+                #print(len(data_db))
+                try:
+                    db.session.add_all(data_db)
+                    db.session.commit()
+                    #print("[INFO]: Dados Por Países Atualizados\n")
+                except exc.SQLAlchemyError as e:
+                    print("[COVID-19][WARNING][insert_data_countries] - Erro ao atualizar Paises")
+                
 
      
     def get_data_db(self, models):
@@ -159,8 +171,8 @@ class EnginerDB:
         #data_atual = '2020-03-24'
         try:
             data = models.query.filter_by(date_data=data_atual).all()
-        except exc.SQLAlchemyError:
-            pass
+        except exc.SQLAlchemyError as e:
+            print("[COVID19][Warning][get_data_db] - Erro ao fazer busca no banco de dados")
         finally:
             return data
 
