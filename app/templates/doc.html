@@ -4,9 +4,59 @@
 
 {% block content %}
 <div class="page_header">
-    <div class="container">
-        <h1>API de Dados V1</h1>
-        <p>Em Breve Documentação</p>
+    <div class="row m-5">
+        <div class="container-fluid">
+            <h1 class="display-4">
+                <strong>API de Dados V1</strong>
+            </h1>
+            <p class="lead text-muted">
+                Esta pagina descreve a API de dados, uma forma automatizada de obter os dados
+                do COVID-19. Em geral de uso de desenvolvedores de softwares ou estudantes que
+                desejam integrar essas informações a outros sistemas. A documentação abaixo
+                descreve, com exemplos, como utilizar a interface de dados
+            </p>
+        </div>
+        <div class="col border">
+            <h2 class="display-6">
+                <strong>Acesso à API de todos os casos</strong>
+            </h2>
+            <p class="text-mured">
+                O acesso à API é publico, não é necessário criar uma conta tampouco autenticar
+            </p>
+            <h3>
+                <strong>Estrutura das requisições</strong>
+            </h3>
+            <h4 class="m-3">URL</h4>
+            <p>
+                É necessário fazer uma chamada HTTP, método <strong>GET</strong>, para a URL<br>
+                <span><strong>https://covid-19.lucas-martins.com/api/v1/<samp>all_cases</samp></strong></span>
+            </p>
+            <h4>Resposta</h4>
+            <p>As respostas são retornadas no formato JSON</p>
+            <h5>Exemplo de retorno:</5>
+            
+        </div>
+        <div class="col border">
+            <h2 class="display-6">
+                <strong>Acesso à API de casos por país</strong>
+            </h2>
+            <p class="text-mured">
+                O acesso à API é publico, não é necessário criar uma conta tampouco autenticar
+            </p>
+            <h3>
+                <strong>Estrutura das requisições</strong>
+            </h3>
+            <h4>URL</h4>
+            <p>
+                É necessário fazer uma chamada HTTP, método <strong>GET</strong>, para a URL<br>
+                <span><strong>https://covid-19.lucas-martins.com/api/v1/<samp>all_countries</samp></strong></span>
+            </p>
+            <h4>Resposta</h4>
+            <p>As respostas são retornadas no formato JSON</p>
+            <h5>Exemplo de retorno:</5>
+        </div>
     </div>
+
+
 </div>
 {% endblock %}
