@@ -4,8 +4,7 @@ utilizando a raspagem web, mais conhecida como ***Web Scraping***.
 
 A dois tipos de dados obtidos pela api:
 
-- Numero de casos mundias, [GET]```http://covid19.lucas-martins.com/api/v1/all_cases```  
-- Numero de casos por paises, [GET]```http://covid19.lucas-martins.com/api/v1/all_countries```
+Para Documentação da API acesse [Documentação](https://covid19.lucas-martins.com/api-doc)
 
 ## Instalação
 
