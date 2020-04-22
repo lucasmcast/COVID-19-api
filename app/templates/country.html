@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} {{country.country}} {% endblock %}
+
+{% block content %}
+<div class="m-5">
+    <h1>{{country.country}}</h1>
+    <h2>Total de Casos: {{country.total_cases}}</h2>
+</div>
+<div class="m-5">
+    <figure>
+        <embed type="image/svg+xml" src="{{url_for('static', filename=url_img)}}" />
+    </figure>
+</div>
+{% endblock %}

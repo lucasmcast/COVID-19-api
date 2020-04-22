@@ -3,8 +3,8 @@
 
 {% block content %}
 
-<div class="row ">
-    <ul class="list-group mx-auto h-75 d-inline-block m-5 pb-5" style="width: 700px;">
+<div class="row">
+    <ul class="list-group mx-auto h-75 d-inline-block m-2 pb-3" style="width: 700px;">
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <h3>Casos de Coronavírus</h1>
                 <span class="badge badge-primary badge-pill">{{cases.total_cases}}</span>
@@ -18,6 +18,9 @@
                 <span class="badge badge-primary badge-pill">{{cases.total_recovered}}</span>
         </li>
     </ul>
+</div>
+<div class="d-flex justify-content-center mb-3">
+    <button onclick="window.location.href='/world'" type="button" class="btn btn-outline-primary">Mapa Mundial</button>
 </div>
 <div class="container">
     <div class="row">
@@ -45,6 +48,7 @@
                         <p clas="card-text" style="display: flex; justify-content: flex-end">{{item.date_data}} -
                             {{item.hour_data}} </p>
                 </div>
+                <button onclick="window.location.href='/country/{{item.country}}'" type="button" class="btn btn-outline-primary">{{item.country}}</button>
             </div>
             {% endfor%}
         </div>

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title%}Histograma{% endblock %}
+{% block content %}
+<div class="mx-3">
+<figure >
+    <embed type="image/svg+xml" src="{{url_for('static', filename='img/histogramas/world_cases.svg')}}" />
+</figure>
+</div>
+{% endblock %}

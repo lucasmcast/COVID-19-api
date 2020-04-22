@@ -136,6 +136,8 @@ dmypy.json
 #DataBases
 *.sqlite
 
+#imagens histogramas
+app/static/img/histogramas/*
 
 
 # End of https://www.gitignore.io/api/linux,python,visualstudiocode

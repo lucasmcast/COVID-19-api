@@ -22,7 +22,7 @@ app.config
 migrate = Migrate(app, db)
 
 #variavel determina o tempo em cada busca
-tempo_exrc = 300
+tempo_exrc = 300 #5 minutos
 
 def is_tables_exist():
     """
