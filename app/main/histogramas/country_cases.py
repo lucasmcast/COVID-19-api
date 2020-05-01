@@ -11,8 +11,8 @@ def build_country_maps(list_country):
         date_list.append(country.date_data)
         cases_list.append(casos)
     
-    print(date_list)
-    print(cases_list)
+    #print(date_list)
+    #print(cases_list)
 
     # Visualizar os dados
     hist = pygal.Bar()

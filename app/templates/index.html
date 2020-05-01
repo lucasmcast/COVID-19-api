@@ -35,7 +35,9 @@
         <div class="col-sm-12 mb-3">
             {% for item in values %}
             <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded">
-                <div class="card-header">{{item.country}}</div>
+                <div class="card-header">
+                    <button onclick="window.location.href='/country/{{item.country}}'" type="button" class="btn btn-outline-primary">{{item.country}}</button>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">Total de casos: {{item.total_cases}} | Novos Casos: <span
                             style="color: red;">{{item.new_cases}}</span> </h5>
@@ -48,7 +50,6 @@
                         <p clas="card-text" style="display: flex; justify-content: flex-end">{{item.date_data}} -
                             {{item.hour_data}} </p>
                 </div>
-                <button onclick="window.location.href='/country/{{item.country}}'" type="button" class="btn btn-outline-primary">{{item.country}}</button>
             </div>
             {% endfor%}
         </div>

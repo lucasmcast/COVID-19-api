@@ -6,6 +6,24 @@ from bs4 import BeautifulSoup as soup
 
 class ServGetData:
 
+    def __init__(self):
+        self._neg_table = self.build_neg_table()
+
+    def build_neg_table(self):
+        """Função cria uma lista com os nomes que estao na tabela para não ser salvos no banco"""
+
+        word_neg = [
+            "World",
+            "Europe",
+            "North America",
+            "Asia",
+            "South America",
+            "Africa",
+            "Oceania"
+        ]
+
+        return word_neg
+
     def get_countries(self):
         #print("[INFO]: Iniciando a busca de dados por país")
 
@@ -26,8 +44,8 @@ class ServGetData:
             #converte a pagina html para o tipo BeautifulSoup
             page_soup = soup(page_html, "html.parser")
             #Busca no codigo html a tag table.
-            countries_tables = page_soup.find("table")
-
+            countries_tables = page_soup.find("table").find("tbody")
+             
             #constantes que indicam o indice da tabela. Parte horizontal(linha)
             COL_COUNTRY_INDEX = 0
             COL_TOTAL_CASES = 1
@@ -41,22 +59,31 @@ class ServGetData:
             total_countries = (len(countries_tables.findAll('tr')) -1)
             #obtem os dados da tabela com a tag tr
             table_html = countries_tables.findAll('tr')[1:total_countries]
+            
             #percorre a tabela obtendo os dados por linha
             for row in table_html:
-                #obtem as informações da tag td
-                countries = row.findAll('td')
-                country = countries[COL_COUNTRY_INDEX].text.strip()
+                #obtem as informações da tag td que é a coluna da tabela
+                columns = row.findAll('td')
+                country = columns[COL_COUNTRY_INDEX].text.strip()
+
+                #Condição para eliminar desnecessarios da tabela
+                if country in self._neg_table or country is "":
+                    continue
+
+                print(columns[COL_COUNTRY_INDEX].find("a", class_='mt_a'))
                 #Nome do pais com o link de outro nivel
-                url_country = countries[COL_COUNTRY_INDEX].find('a')
+                url_country = columns[COL_COUNTRY_INDEX].find('a')
                 if url_country:
                     url_country = url_country.get('href').strip()
-                total_cases_country = countries[COL_TOTAL_CASES].text.strip()
-                new_cases_country = countries[COL_NEW_CASES].text.strip()
-                total_deaths_country = countries[COL_TOTAL_DEATHS].text.strip()
-                new_deaths_country = countries[COL_NEW_DEATHS].text.strip()
-                total_recovered_country = countries[COL_TOTAL_RECOVERED].text.strip()
-                active_cases_country = countries[COL_ACTIVE_CASES].text.strip()
-                serious_critical_country = countries[COL_SERIOUS_CRITICAL].text.strip()
+
+                total_cases_country = columns[COL_TOTAL_CASES].text.strip()
+                new_cases_country = columns[COL_NEW_CASES].text.strip()
+                total_deaths_country = columns[COL_TOTAL_DEATHS].text.strip()
+                new_deaths_country = columns[COL_NEW_DEATHS].text.strip()
+                total_recovered_country = columns[COL_TOTAL_RECOVERED].text.strip()
+                active_cases_country = columns[COL_ACTIVE_CASES].text.strip()
+                serious_critical_country = columns[COL_SERIOUS_CRITICAL].text.strip()
+
                 new_countries = {
                     'country' : country,
                     'url_country' : url_country,

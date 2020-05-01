@@ -18,7 +18,7 @@ def get_cases(countries):
         if code:
             cases_world[code] = casos
     
-    print(cases_world)
+    #print(cases_world)
         
     return cases_world
 
@@ -36,7 +36,7 @@ def build_maps(countries):
         else:
             cc_cases4[cc] = cases
     
-    print(len(cc_cases1), len(cc_cases2), len(cc_cases3), len(cc_cases4))
+    #print(len(cc_cases1), len(cc_cases2), len(cc_cases3), len(cc_cases4))
     
     #data_str = data_atual.strftime("%d/%m/%Y")
     
