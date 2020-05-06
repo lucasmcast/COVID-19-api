@@ -14,6 +14,8 @@ def index():
      
     data_atual = date.today()
     try:
+        result = GeneralsDatas.query()
+        print(result)
         countries_cases = CountryCases.query.filter_by(date_data=data_atual)
         generals_cases = GeneralsDatas.query.filter_by(date_data=data_atual)
         return render_template('index.html', cases=generals_cases[-1], values=countries_cases)
@@ -22,6 +24,7 @@ def index():
         countries_cases = CountryCases.query.filter_by(date_data=date_before)
         generals_cases = GeneralsDatas.query.filter_by(date_data=date_before)
         return render_template('index.html', cases=generals_cases[-1], values=countries_cases)
+
    
 
     

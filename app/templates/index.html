@@ -2,23 +2,38 @@
 {% block title %}Covid-19-api{% endblock %}
 
 {% block content %}
-
-<div class="row">
-    <ul class="list-group mx-auto h-75 d-inline-block m-2 pb-3" style="width: 700px;">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            <h3>Casos de Coronavírus</h1>
-                <span class="badge badge-primary badge-pill">{{cases.total_cases}}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            <h3>Mortos</h1>
-                <span class="badge badge-primary badge-pill">{{cases.total_deaths}}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            <h3>Recuperados</h1>
-                <span class="badge badge-primary badge-pill">{{cases.total_recovered}}</span>
-        </li>
-    </ul>
+<!--<div class="container">-->
+    <div class="row m-1">
+        <div class="col-sm ">
+            <div class="card text-white bg-primary m-1" style="max-width: 30rem;">
+                <div class="card-header">Casos Covid-19</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{cases.total_cases}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card text-white bg-success m-1" style="max-width: 30rem;">
+                <div class="card-header">Recuperados</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{cases.total_recovered}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="card text-white bg-danger m-1" style="max-width: 30rem;">
+                <div class="card-header">Mortos</div>
+                <div class="card-body">
+                  <h5 class="card-title">{{cases.total_deaths}}</h5>
+                </div>
+              </div>
+        </div>
+    </div>
+<!--</div>-->
+<div class="chart-container" style="position: relative; height:40vh; width:80vw">
+    <canvas id="chart"></canvas>
 </div>
+
 <div class="d-flex justify-content-center mb-3">
     <button onclick="window.location.href='/world'" type="button" class="btn btn-outline-primary">Mapa Mundial</button>
 </div>
@@ -36,7 +51,8 @@
             {% for item in values %}
             <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded">
                 <div class="card-header">
-                    <button onclick="window.location.href='/country/{{item.country}}'" type="button" class="btn btn-outline-primary">{{item.country}}</button>
+                    <button onclick="window.location.href='/country/{{item.country}}'" type="button"
+                        class="btn btn-outline-primary">{{item.country}}</button>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Total de casos: {{item.total_cases}} | Novos Casos: <span
@@ -58,6 +74,7 @@
 {% endblock %}
 {% block scripts %}
 {{ super() }}
+<script src="static/Chart.min.js"></script>
 <script>
     function searchFunction() {
         var input, filter, cards, cardContainer, h5, title, i;
@@ -74,5 +91,39 @@
             }
         }
     }
+</script>
+<script>
+    var barData = {
+        labels : ["jan","fev","mar","abr","maio"],
+
+        datasets : [{
+          fillColor: "rgba(151,187,205,0.2)",
+          strokeColor: "rgba(151,187,205,1)",
+          pointColor: "rgba(151,187,205,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(151,187,205,1)",
+          bezierCurve : false,
+          data : [10,2,5,9,6]
+          }
+	    ]
+    }
+
+    var mychart = document.getElementById("chart").getContext("2d");
+
+      steps = 10
+      max = {{ max }}
+      // draw bar chart
+      var LineChartDemo = new Chart(mychart).Line(barData, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true,
+        bezierCurve: false,
+      });
 </script>
 {% endblock%}

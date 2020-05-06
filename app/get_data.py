@@ -67,10 +67,9 @@ class ServGetData:
                 country = columns[COL_COUNTRY_INDEX].text.strip()
 
                 #Condição para eliminar desnecessarios da tabela
-                if country in self._neg_table or country is "":
+                if country in self._neg_table or country == "":
                     continue
 
-                print(columns[COL_COUNTRY_INDEX].find("a", class_='mt_a'))
                 #Nome do pais com o link de outro nivel
                 url_country = columns[COL_COUNTRY_INDEX].find('a')
                 if url_country:
