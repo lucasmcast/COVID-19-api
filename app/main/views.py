@@ -4,6 +4,7 @@ from . import main
 from ..models import GeneralsDatas, CountryCases
 from .histogramas.world_cases import build_maps
 from .histogramas.country_cases import build_country_maps
+from pprint import pprint
 
 @main.route('/', methods=['GET'])
 def index():
@@ -11,19 +12,46 @@ def index():
     ip_client = request.remote_addr
     #print é para salvar no log de acesso
     print(f"[COVID-19][INFO][index][address client] - {ip_client}")
-     
+    
     data_atual = date.today()
+    cases, deaths, recovereds, labels = [], [], [], []
     try:
-        result = GeneralsDatas.query()
-        print(result)
+        
+        result = GeneralsDatas.query.all()
+
+        for row in result:
+            total_cases = row.total_cases.replace(',', '')
+            total_cases = int(total_cases)
+
+            total_deaths = row.total_deaths.replace(',', '')
+            total_deaths = int(total_deaths)
+
+            total_recovereds = row.total_recovered.replace(',', '')
+            total_recovereds = int(total_recovereds)
+
+            cases.append(total_cases)
+            deaths.append(total_deaths)
+            recovereds.append(total_recovereds)
+            labels.append(row.date_data)
+
+        values = {
+            'cases' : cases, 
+            'deaths' : deaths, 
+            'recovereds' : recovereds, 
+            'labels' : labels
+        }
+
         countries_cases = CountryCases.query.filter_by(date_data=data_atual)
         generals_cases = GeneralsDatas.query.filter_by(date_data=data_atual)
-        return render_template('index.html', cases=generals_cases[-1], values=countries_cases)
+        
     except:
         date_before = datetime.today() - timedelta(days=1)
         countries_cases = CountryCases.query.filter_by(date_data=date_before)
         generals_cases = GeneralsDatas.query.filter_by(date_data=date_before)
-        return render_template('index.html', cases=generals_cases[-1], values=countries_cases)
+        
+    finally:
+        return render_template('index.html', cases=generals_cases[-1], countries=countries_cases,
+        values=values)
 
    
 

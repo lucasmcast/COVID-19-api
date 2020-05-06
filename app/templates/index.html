@@ -30,12 +30,8 @@
         </div>
     </div>
 <!--</div>-->
-<div class="chart-container" style="position: relative; height:40vh; width:80vw">
-    <canvas id="chart"></canvas>
-</div>
-
-<div class="d-flex justify-content-center mb-3">
-    <button onclick="window.location.href='/world'" type="button" class="btn btn-outline-primary">Mapa Mundial</button>
+<div class="containe m-4">
+    <canvas id="chart" width="800" height="300"></canvas>
 </div>
 <div class="container">
     <div class="row">
@@ -48,7 +44,7 @@
     </div>
     <div id="myItems" class="row">
         <div class="col-sm-12 mb-3">
-            {% for item in values %}
+            {% for item in countries %}
             <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded">
                 <div class="card-header">
                     <button onclick="window.location.href='/country/{{item.country}}'" type="button"
@@ -93,37 +89,61 @@
     }
 </script>
 <script>
-    var barData = {
-        labels : ["jan","fev","mar","abr","maio"],
+    // Global parameters:
+    // do not resize the chart canvas when its container does (keep at 600x400px)
+    Chart.defaults.global.responsive = true;
 
-        datasets : [{
-          fillColor: "rgba(151,187,205,0.2)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
-          pointStrokeColor: "#fff",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(151,187,205,1)",
-          bezierCurve : false,
-          data : [10,2,5,9,6]
-          }
-	    ]
+    window.chartColors = {
+        red: 'rgb(229, 1, 1)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(65, 199, 32)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    }
+    // define the chart data
+    var chartData = {
+      labels : [{% for item in values['labels'] %}
+                 "{{item}}",
+                {% endfor %}],
+      datasets : [{
+          label: 'Casos Covid-19',
+          fill: false,
+          borderColor: window.chartColors.blue,
+          data : [{% for item in values['cases'] %}
+                    {{item}},
+                  {% endfor %}],
+        },
+        {
+            label: 'Recuperados',
+            borderColor: window.chartColors.green,
+            fill: false,
+            data: [{% for item in values['recovereds'] %}
+                    {{item}},
+                    {% endfor %}]
+        },
+        {
+            label: 'Mortos',
+            borderColor: window.chartColors.red,
+            fill: false,
+            data: [{% for item in values['deaths']%}
+                    {{item}},
+                    {% endfor %}]
+        }]
     }
 
-    var mychart = document.getElementById("chart").getContext("2d");
+    var ctx = document.getElementById("chart").getContext("2d")
 
-      steps = 10
-      max = {{ max }}
-      // draw bar chart
-      var LineChartDemo = new Chart(mychart).Line(barData, {
-        scaleOverride: true,
-        scaleSteps: steps,
-        scaleStepWidth: Math.ceil(max / steps),
-        scaleStartValue: 0,
-        scaleShowVerticalLines: true,
-        scaleShowGridLines : true,
-        barShowStroke : true,
-        scaleShowLabels: true,
-        bezierCurve: false,
-      });
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+            tooltips:{
+                enabled: true,
+                mode: 'point'
+            },
+        }
+    });
 </script>
 {% endblock%}
