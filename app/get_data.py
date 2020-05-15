@@ -47,14 +47,14 @@ class ServGetData:
             countries_tables = page_soup.find("table").find("tbody")
              
             #constantes que indicam o indice da tabela. Parte horizontal(linha)
-            COL_COUNTRY_INDEX = 0
-            COL_TOTAL_CASES = 1
-            COL_NEW_CASES = 2
-            COL_TOTAL_DEATHS = 3
-            COL_NEW_DEATHS = 4
-            COL_TOTAL_RECOVERED = 5
-            COL_ACTIVE_CASES = 6
-            COL_SERIOUS_CRITICAL = 7
+            COL_COUNTRY_INDEX = 1
+            COL_TOTAL_CASES = 2
+            COL_NEW_CASES = 3
+            COL_TOTAL_DEATHS = 4
+            COL_NEW_DEATHS = 5
+            COL_TOTAL_RECOVERED = 6
+            COL_ACTIVE_CASES = 7
+            COL_SERIOUS_CRITICAL = 8
             #Obtem o numero de paises na tabela
             total_countries = (len(countries_tables.findAll('tr')) -1)
             #obtem os dados da tabela com a tag tr
