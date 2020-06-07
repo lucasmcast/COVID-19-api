@@ -61,6 +61,7 @@ Windows:
  - [x] Atualizar os dados em determinado tempo somente do dia atual, caso contrário, fazer a inserção.
  - [x] Disponibilizar os dados através da api.
  - [x] Criar página para visualizar os dados obtidos.
+ - [x] Disponibilizar informações através de gráficos.
  - [ ] Disponibilizar informações de países específicos, ```/api/v1/country/<país>```
  - [ ] Disponibilizar informações dos dados gerais e de países por data específica. ```/api/v1/date/country/<data>``` ou ```/api/v1/date/all_cases/<data>```
  - [x] Implantar projeto.

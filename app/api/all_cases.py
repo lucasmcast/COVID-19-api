@@ -3,7 +3,7 @@ from flask import jsonify
 from datetime import date
 from ..models import GeneralsDatas, CountryCases
 
-@api.route('/all_cases')
+@api.route('/all_cases', methods=["GET"])
 def all_cases():
     date_now = str(date.today())
     generals = GeneralsDatas.query.\
