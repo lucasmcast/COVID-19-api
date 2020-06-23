@@ -53,8 +53,8 @@ class ServGetData:
             COL_TOTAL_DEATHS = 4
             COL_NEW_DEATHS = 5
             COL_TOTAL_RECOVERED = 6
-            COL_ACTIVE_CASES = 7
-            COL_SERIOUS_CRITICAL = 8
+            COL_ACTIVE_CASES = 8
+            COL_SERIOUS_CRITICAL = 9
             #Obtem o numero de paises na tabela
             total_countries = (len(countries_tables.findAll('tr')) -1)
             #obtem os dados da tabela com a tag tr
